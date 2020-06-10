@@ -1,0 +1,210 @@
+
+formulas(sos).
+	
+	all x (exists y supermarket(x) & (personalitem(y) | fooditem(y) | dairyproducts(y)|beverages(y)) -> sells (x, y)).
+
+	all x (supermarket(x) -> shop(x)).
+
+	all x (exists y exists z supermarket(z) & item(x) & (customer(y) | employee(y)) -> scan(y, x, z )).
+
+	all x (exists y all z exists u customer(u) & supermarket(x) & employee(y) & item(z) & restock(y, z, x) & assist(y, u)).
+
+	all x (exists z supermarket(z) & customer(x) & use (x, Cart)).
+
+	all x (customer(x) -> get(x, receipt)).
+
+	all x (all y supermarket(x) & item(y)-> deliver(x, y)).
+
+	all x (exists y shop(x) & item(y) -> sells (x, y)).
+
+	all x (exists y exists z exists u time(u) & shop(z) & item(y) & person(x) & bought(x, y, z, u) -> customer(x)).
+
+	all x (customer(x) -> adult(x)).
+
+	all x (exists y people(x) & sellItems(x, y) & item(y) -> seller(x)).
+
+	all x (people(x) & works(x) -> employee(x)).
+
+	all x (exists y shop(x) & has(x, y) & (employee(y) & customer(y))).
+
+	all x (fooditem(x) -> item(x)).
+
+	all x (personalitem(x)->item(x)).
+
+	deodorant(D).
+
+	all x (deodorant(x) -> personalitem(x)).
+
+	tomato(T).
+
+	beef(B).
+
+	all x (beef(x) -> meat(x)).
+
+	all x (lamb(x) -> meat(x)).
+
+	all x (pork(x) -> meat(x)).
+
+	all x (sausage(x) -> meat(x)).
+
+	all x (stew_meat(x) -> meat(x)).
+
+	all x (halal(x) -> meat(x)).
+
+	all x (meat(x) -> fooditem(x)).
+
+	all x (person(x) -> people(x)).
+
+	all x (all y supermarket(x) & item(y) -> -make(x,y)).
+
+	person(John).
+
+	bought(John, T, Safeway, t).
+
+	weight(T, 2).
+
+	weight(B, 1).
+
+	bought(John, B, Safeway, t).
+
+	person(Mary).
+
+	all x (exists y exists z exists t customer(x) & item(y) & shop(z) & time(u) & bought(x, y, z, u) -> bringsMoney(x, z)).
+
+	all x (exists z shop(z) & customer(x) & bringsMoney(x,z)-> all y brings(x, y, z) & money(y)).
+
+	money(card).
+
+	money(cash).
+
+	isa(creditcard, card).
+
+	supermarket (Safeway). 
+
+	supermarket(NBS).
+
+	isa(NBS, Safeway).
+
+	locatedAt(Safeway, NorthBerkeley).
+
+	time(t).
+
+	measure(Pound).
+
+	measure(Ounce).
+
+	measure(Kilogram).
+
+	all x (fooditem(x) & weight(x, 1)-> unit(x)).
+
+	all x (exists y fooditem(x) & measure(y) -> usedToWeight(y, x)). 
+
+	all x (tomato(x) -> piecesPerPound(x,5)).
+
+	all x ( exists y exists z exists u customer(x) & item(y) & shop(z) & time(u) & bought(x, y, z, u)-> paid(x, y, z, u)).
+
+	all x ( exists y exists z exists u customer(x) & item(y) & shop(z) & time(u) & paid(x, y, z, u)-> lessMoney(x)).
+
+	all x ( exists y exists z exists u customer(x) & item(y) & shop(z) & time(u) & paid(x, y, z, u)-> moreMoney(z)).
+
+	all x (exists y exists z exists u customer(x) & item(y) & shop(z) & time(u) & bought(x, y, z, u) -> owns(x, y)).
+
+	all x (exists y exists z exists t customer(x) & item(y) & shop(z) & time(u) & bought(x, y, z, u) -> bringsMoney(x, z)).
+
+	all x (exists y customer(x) & fooditem(y) & owns(x, y) -> eats(x, y)).
+
+	all x (all y exists u exists z person(x) & person(y) & item(u) & shop(z) & bought(x, u, z, t) & bought(y, u, z, t) -> see(x,y)|see(y,x)).
+
+	all x (meat(x) -> animalproduct(x)).
+
+	all x (fish(x) -> animalproduct(x)).
+
+	all x (egg(x) -> animalproduct(x)).
+
+	all x (animalproduct(x) -> fooditem(x)).
+
+	all x (exists y people(x) & -eats(x, y) & animalproduct(y) -> vegetarian(x)).
+
+	all x (exists y people(x) & -eats(x, y) & (animalproduct(y) | dairyproduct(y)) -> vegan(x)).
+
+	all x (exists y people(x) & eats(x, y) & animalproduct(y) -> nonvegetarian(x)).
+
+	all x (groundbeef(x)->beef(x)).
+
+	gas(G).
+
+	all x (gas(x) & sells(Shell, x)).
+
+	all x (adult(x) -> -child(x)).
+
+	all x (child(x) -> -adult(x)).
+
+	all x (exists y shop(x) & sells(x, y) & item(y) -> owns(x,y)).
+
+	hasSize(carTrunk, 600).
+
+	all x (milk(x) -> dairyproduct(x)).
+
+	all x (cheese(x) -> dairyproduct(x)).
+
+	all x (butter(x) -> dairyproduct(x)).
+
+	all x(fish(x)->meat(x)).
+
+	all x (vegetable(x)->fooditem(x)).
+
+	all x (tomato(x)->vegetable(x)).
+
+	all x (cabbage(x)->vegetable(x)).
+
+	all x (broccoli(x)->vegetable(x)).
+
+	all x (potato(x)->vegetable(x)).
+
+	all x (onion(x)->vegetable(x)).
+
+	all x (juice(x)->beverage(x)).
+
+	all x (soda(x)->beverage(x)).
+
+	all x (alcohol(x)->beverage(x)).
+
+	all x (water(x)->beverage(x)).
+
+	all x (tea(x)->beverage(x)).
+
+	all x (coffee(x)->beverage(x)).
+
+	all x (fruit(x)->fooditem(x)).
+
+	all x (apple(x)->fruit(x)).
+
+	all x (mango(x)->fruit(x)).
+
+	all x (banana(x)->fruit(x)).
+
+	all x (strawberry(x)->fruit(x)).
+
+	all x (pineapple(x)->fruit(x)).
+
+	all x (lotion(x) -> personalitem(x)).
+
+	all x (hairspray(x) -> personalitem(x)).
+
+	all x (shavingcream(x) -> personalitem(x)).
+
+	all x (cosmetic(x) -> personalitem(x)).
+
+	all x (toothbrush(x) -> personalitem(x)).
+
+	all x (bodywash(x) -> personalitem(x)).
+
+	all x (soap(x) -> personalitem(x)).
+
+
+end_of_list.
+
+
+formulas(goals).
+	exists x (sells(Safeway,x) & meat(x)).
+end_of_list.
